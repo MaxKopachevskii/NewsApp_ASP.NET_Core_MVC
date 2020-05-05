@@ -1,0 +1,86 @@
+﻿@model IEnumerable<ASP.NET_Core_NewsApp.Models.Article>
+
+@{
+    ViewData["Title"] = "ShowList";
+}
+
+<center><h4>Весь список статей</h4></center>
+
+    <p>
+        <a class="btn btn-danger" asp-action="Create">Добавить</a>
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Id)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Title)
+                </th>
+                @*<th>
+                    @Html.DisplayNameFor(model => model.Img)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ShortDesc)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LongDesc)
+                </th>*@
+                <th>
+                    @Html.DisplayNameFor(model => model.UserName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.WasCheck)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DateTime)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CategoryId)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    @*<td>
+                        @Html.DisplayFor(modelItem => item.Img)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ShortDesc)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LongDesc)
+                    </td>*@
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UserName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.WasCheck)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DateTime)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CategoryId)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Изменить", "Edit", new { id = item.Id }, new { @class = "btn btn-dark" })
+                        <br /><br />
+                        @Html.ActionLink("Подробнее", "Details", new { id = item.Id }, new { @class = "btn btn-dark" })
+                        <br /><br />
+                        @Html.ActionLink("Удалить", "Delete", new { id = item.Id }, new { @class = "btn btn-danger" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>

@@ -1,0 +1,80 @@
+﻿@model ASP.NET_Core_NewsApp.Models.Article
+
+@{
+    ViewData["Title"] = "Details";
+}
+    <center><h4>@Model.Title</h4></center>
+    <br />
+    <div class="row">
+          <div class="card" style="width: 55rem; margin-left:150px;">
+              <img src="@Model.Img" class="card-img-top" alt="...">
+          </div>
+    </div>
+    <br />
+
+    <p style="margin-left:15px; font-size:1.2em;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@Model.LongDesc</p>    
+
+    @*<div>
+        <center><h4>Детальная информация</h4></center>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Id)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Id)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Title)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Title)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Img)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Img)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.ShortDesc)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.ShortDesc)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.LongDesc)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.LongDesc)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.UserName)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.UserName)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.WasCheck)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.WasCheck)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.DateTime)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.DateTime)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.CategoryId)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.CategoryId)
+            </dd>
+        </dl>
+    </div>
+    <div>
+        @Html.ActionLink("Изменить", "Edit", new { id = Model.Id }, new { @class = "btn btn-warning" })
+        <a class="btn btn-info" asp-action="ShowList">Назад</a>
+    </div>*@
