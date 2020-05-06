@@ -59,7 +59,31 @@ namespace ASP.NET_Core_NewsApp.Controllers
 
         public IActionResult Index()
         {
-            return View(db.Articles.ToList());
+            return View(db.Articles.Where(item => item.WasCheck == true).ToList());
+        }
+
+        public IActionResult ArticlesIT()
+        {
+            var articles = db.Articles.Where(item => item.CategoryId == 1).ToList();
+            return View(articles);
+        }
+
+        public IActionResult ArticlesPolitics()
+        {
+            var articles = db.Articles.Where(item => item.CategoryId == 2).ToList();
+            return View(articles);
+        }
+
+        public IActionResult ArticlesCars()
+        {
+            var articles = db.Articles.Where(item => item.CategoryId == 3).ToList();
+            return View(articles);
+        }
+
+        public IActionResult ArticlesNotCheck()
+        {
+            var artigles = db.Articles.Where(item => item.WasCheck == false).ToList();
+            return View(artigles);
         }
 
         public IActionResult ShowList()
@@ -139,6 +163,23 @@ namespace ASP.NET_Core_NewsApp.Controllers
             if (article != null)
             {
                 return View(article);
+            }
+            return NotFound();
+        }
+
+        public IActionResult WasChecked(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var article = db.Articles.Find(id);
+            if (article != null)
+            {
+                article.WasCheck = true;
+                db.Articles.Update(article);
+                db.SaveChanges();
+                return RedirectToAction("ArticlesNotCheck");
             }
             return NotFound();
         }

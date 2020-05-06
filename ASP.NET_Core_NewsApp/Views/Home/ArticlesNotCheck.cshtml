@@ -1,0 +1,26 @@
+﻿@model IEnumerable<ASP.NET_Core_NewsApp.Models.Article>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card" style="width: 22rem;">
+                    <img src="@item.Img" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">@item.Title</h5>
+                        <p class="card-text">@item.ShortDesc</p>
+                        @Html.ActionLink("Подробнее", "Details", new { id = item.Id }, new { @class = "btn btn-warning" })<br /><br />
+                        @Html.ActionLink("Подтвердить", "WasChecked", new { id = item.Id }, new { @class = "btn btn-success" })
+                        @Html.ActionLink("Удалить", "Delete", new { id = item.Id }, new { @class = "btn btn-danger" })
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-muted">Дата добавления статьи:<br />@item.DateTime</small>
+                    </div>
+                </div>
+            </div>
+         }
+    </div>

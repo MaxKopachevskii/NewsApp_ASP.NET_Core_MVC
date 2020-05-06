@@ -158,3 +158,7 @@ C:\Users\Admin\source\repos\ASP.NET_Core_NewsApp\ASP.NET_Core_NewsApp\obj\Debug\
 C:\Users\Admin\source\repos\ASP.NET_Core_NewsApp\ASP.NET_Core_NewsApp\obj\Debug\netcoreapp3.1\Razor\Views\Home\Create.cshtml.g.cs
 C:\Users\Admin\source\repos\ASP.NET_Core_NewsApp\ASP.NET_Core_NewsApp\obj\Debug\netcoreapp3.1\Razor\Views\Home\Edit.cshtml.g.cs
 C:\Users\Admin\source\repos\ASP.NET_Core_NewsApp\ASP.NET_Core_NewsApp\obj\Debug\netcoreapp3.1\Razor\Views\Home\Details.cshtml.g.cs
+C:\Users\Admin\source\repos\ASP.NET_Core_NewsApp\ASP.NET_Core_NewsApp\obj\Debug\netcoreapp3.1\Razor\Views\Home\ArticlesNotCheck.cshtml.g.cs
+C:\Users\Admin\source\repos\ASP.NET_Core_NewsApp\ASP.NET_Core_NewsApp\obj\Debug\netcoreapp3.1\Razor\Views\Home\ArticlesCars.cshtml.g.cs
+C:\Users\Admin\source\repos\ASP.NET_Core_NewsApp\ASP.NET_Core_NewsApp\obj\Debug\netcoreapp3.1\Razor\Views\Home\ArticlesIT.cshtml.g.cs
+C:\Users\Admin\source\repos\ASP.NET_Core_NewsApp\ASP.NET_Core_NewsApp\obj\Debug\netcoreapp3.1\Razor\Views\Home\ArticlesPolitics.cshtml.g.cs
