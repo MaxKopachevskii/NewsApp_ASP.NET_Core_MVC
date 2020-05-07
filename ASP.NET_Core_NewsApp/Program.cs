@@ -9,6 +9,7 @@ using Microsoft.Extensions.Logging;
 
 namespace ASP.NET_Core_NewsApp
 {
+    //Admin1!
     public class Program
     {
         public static void Main(string[] args)

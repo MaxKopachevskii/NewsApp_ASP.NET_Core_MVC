@@ -68,6 +68,7 @@ namespace ASP.NET_Core_NewsApp
                     pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
+
         }
     }
 }
