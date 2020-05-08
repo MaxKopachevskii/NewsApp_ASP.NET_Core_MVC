@@ -1,12 +1,40 @@
-﻿@model IEnumerable<ASP.NET_Core_NewsApp.Models.Article>
+﻿@using ASP.NET_Core_NewsApp.Models
+@model IndexViewModel
 
 @{
     ViewData["Title"] = "Index";
 }
+
+<style>
+    @@font-face {
+        font-family: 'FontAwesome';
+        src: url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/fonts/fontawesome-webfont.woff2') format('woff2'), url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/fonts/fontawesome-webfont.woff') format('woff'), url('https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/fonts/fontawesome-webfont.ttf') format('truetype');
+        font-weight: normal;
+        font-style: normal
+    }
+
+    .glyphicon {
+        display: inline-block;
+        font: normal normal normal 14px/1 FontAwesome;
+        font-size: inherit;
+        text-rendering: auto;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale
+    }
+
+    .glyphicon-chevron-right:before {
+        content: "\f054";
+    }
+
+    .glyphicon-chevron-left:before {
+        content: "\f053";
+    }
+</style>
+
 <center><h3><i>Автомобильная тематика</i></h3></center>
 <br />
 <div class="row">
-    @foreach (var item in Model)
+    @foreach (var item in Model.Articles)
     {
         <div class="col-lg-4 col-md-6 mb-4">
             <div class="card" style="width: 22rem;">
@@ -23,3 +51,23 @@
         </div>
     }
 </div>
+
+@if (Model.PageViewModel.HasPreviousPage)
+{
+    <a asp-action="ArticlesCars"
+       asp-route-page="@(Model.PageViewModel.PageNumber - 1)"
+       class="btn btn-outline-danger">
+        <i class="glyphicon glyphicon-chevron-left"></i>
+        Назад
+    </a>
+}
+@if (Model.PageViewModel.HasNextPage)
+{
+    <a asp-action="ArticlesCars"
+       asp-route-page="@(Model.PageViewModel.PageNumber + 1)"
+       class="btn btn-outline-danger">
+        Вперед
+        <i class="glyphicon glyphicon-chevron-right"></i>
+    </a>
+}
+

@@ -8,6 +8,7 @@ using Microsoft.Extensions.Logging;
 using ASP.NET_Core_NewsApp.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Configuration;
+using Microsoft.EntityFrameworkCore;
 
 namespace ASP.NET_Core_NewsApp.Controllers
 {
@@ -19,27 +20,72 @@ namespace ASP.NET_Core_NewsApp.Controllers
             db = context;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index(int page = 1)
         {
-            return View(db.Articles.Where(item => item.WasCheck == true).OrderByDescending(item => item.Id).ToList());
+            int pageSize = 6;   // количество элементов на странице
+
+            IQueryable<Article> source = db.Articles.Where(item => item.WasCheck == true).OrderByDescending(item => item.Id);
+            var count = await source.CountAsync();
+            var items = await source.Skip((page - 1) * pageSize).Take(pageSize).ToListAsync();
+
+            PageViewModel pageViewModel = new PageViewModel(count, page, pageSize);
+            IndexViewModel viewModel = new IndexViewModel
+            {
+                PageViewModel = pageViewModel,
+                Articles = items
+            };
+            return View(viewModel);
         }
 
-        public IActionResult ArticlesIT()
+        public async Task<IActionResult> ArticlesIT(int page = 1)
         {
-            var articles = db.Articles.Where(item => item.CategoryId == 1).OrderByDescending(item => item.Id).ToList();
-            return View(articles);
+            int pageSize = 6;   // количество элементов на странице
+
+            IQueryable<Article> source = db.Articles.Where(item => item.CategoryId == 1 && item.WasCheck == true).OrderByDescending(item => item.Id);
+            var count = await source.CountAsync();
+            var items = await source.Skip((page - 1) * pageSize).Take(pageSize).ToListAsync();
+
+            PageViewModel pageViewModel = new PageViewModel(count, page, pageSize);
+            IndexViewModel viewModel = new IndexViewModel
+            {
+                PageViewModel = pageViewModel,
+                Articles = items
+            };
+            return View(viewModel);
         }
 
-        public IActionResult ArticlesPolitics()
+        public async Task<IActionResult> ArticlesPolitics(int page = 1)
         {
-            var articles = db.Articles.Where(item => item.CategoryId == 2).OrderByDescending(item => item.Id).ToList();
-            return View(articles);
+            int pageSize = 6;   // количество элементов на странице
+
+            IQueryable<Article> source = db.Articles.Where(item => item.CategoryId == 2 && item.WasCheck == true).OrderByDescending(item => item.Id);
+            var count = await source.CountAsync();
+            var items = await source.Skip((page - 1) * pageSize).Take(pageSize).ToListAsync();
+
+            PageViewModel pageViewModel = new PageViewModel(count, page, pageSize);
+            IndexViewModel viewModel = new IndexViewModel
+            {
+                PageViewModel = pageViewModel,
+                Articles = items
+            };
+            return View(viewModel);
         }
 
-        public IActionResult ArticlesCars()
+        public async Task<IActionResult> ArticlesCars(int page = 1)
         {
-            var articles = db.Articles.Where(item => item.CategoryId == 3).OrderByDescending(item => item.Id).ToList();
-            return View(articles);
+            int pageSize = 6;   // количество элементов на странице
+
+            IQueryable<Article> source = db.Articles.Where(item => item.CategoryId == 3 && item.WasCheck == true).OrderByDescending(item => item.Id);
+            var count = await source.CountAsync();
+            var items = await source.Skip((page - 1) * pageSize).Take(pageSize).ToListAsync();
+
+            PageViewModel pageViewModel = new PageViewModel(count, page, pageSize);
+            IndexViewModel viewModel = new IndexViewModel
+            {
+                PageViewModel = pageViewModel,
+                Articles = items
+            };
+            return View(viewModel);
         }
 
         public IActionResult ArticlesNotCheck()
@@ -48,7 +94,7 @@ namespace ASP.NET_Core_NewsApp.Controllers
             return View(artigles);
         }
 
-        [Authorize]
+        [Authorize(Policy = "RequireAdministratorRole")]
         public IActionResult ShowList()
         {
             return View(db.Articles.ToList());
@@ -158,5 +204,28 @@ namespace ASP.NET_Core_NewsApp.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        //public IActionResult Index()
+        //{
+        //    return View(db.Articles.Where(item => item.WasCheck == true).OrderByDescending(item => item.Id).ToList());
+        //}
+
+        //public IActionResult ArticlesIT()
+        //{
+        //    var articles = db.Articles.Where(item => item.CategoryId == 1).OrderByDescending(item => item.Id).ToList();
+        //    return View(articles);
+        //}
+
+        //public IActionResult ArticlesPolitics()
+        //{
+        //    var articles = db.Articles.Where(item => item.CategoryId == 2).OrderByDescending(item => item.Id).ToList();
+        //    return View(articles);
+        //}
+
+        //public IActionResult ArticlesCars()
+        //{
+        //    var articles = db.Articles.Where(item => item.CategoryId == 3).OrderByDescending(item => item.Id).ToList();
+        //    return View(articles);
+        //}
     }
 }
