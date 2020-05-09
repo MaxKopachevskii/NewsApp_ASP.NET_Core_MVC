@@ -37,11 +37,47 @@ namespace ASP.NET_Core_NewsApp.Controllers
             return View(viewModel);
         }
 
+        [HttpPost]
+        public async Task<IActionResult> Index(string Search, int page = 1)
+        {
+            int pageSize = 6;   // количество элементов на странице
+
+            IQueryable<Article> source = db.Articles.Where(item => item.WasCheck == true && item.Title.Contains(Search)).OrderByDescending(item => item.Id);
+            var count = await source.CountAsync();
+            var items = await source.Skip((page - 1) * pageSize).Take(pageSize).ToListAsync();
+
+            PageViewModel pageViewModel = new PageViewModel(count, page, pageSize);
+            IndexViewModel viewModel = new IndexViewModel
+            {
+                PageViewModel = pageViewModel,
+                Articles = items
+            };
+            return View(viewModel);
+        }
+
         public async Task<IActionResult> ArticlesIT(int page = 1)
         {
             int pageSize = 6;   // количество элементов на странице
 
             IQueryable<Article> source = db.Articles.Where(item => item.CategoryId == 1 && item.WasCheck == true).OrderByDescending(item => item.Id);
+            var count = await source.CountAsync();
+            var items = await source.Skip((page - 1) * pageSize).Take(pageSize).ToListAsync();
+
+            PageViewModel pageViewModel = new PageViewModel(count, page, pageSize);
+            IndexViewModel viewModel = new IndexViewModel
+            {
+                PageViewModel = pageViewModel,
+                Articles = items
+            };
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ArticlesIT(string Search, int page = 1)
+        {
+            int pageSize = 6;   // количество элементов на странице
+
+            IQueryable<Article> source = db.Articles.Where(item => item.CategoryId == 1 && item.WasCheck == true && item.Title.Contains(Search)).OrderByDescending(item => item.Id);
             var count = await source.CountAsync();
             var items = await source.Skip((page - 1) * pageSize).Take(pageSize).ToListAsync();
 
@@ -71,11 +107,47 @@ namespace ASP.NET_Core_NewsApp.Controllers
             return View(viewModel);
         }
 
+        [HttpPost]
+        public async Task<IActionResult> ArticlesPolitics(string Search, int page = 1)
+        {
+            int pageSize = 6;   // количество элементов на странице
+
+            IQueryable<Article> source = db.Articles.Where(item => item.CategoryId == 2 && item.WasCheck == true && item.Title.Contains(Search)).OrderByDescending(item => item.Id);
+            var count = await source.CountAsync();
+            var items = await source.Skip((page - 1) * pageSize).Take(pageSize).ToListAsync();
+
+            PageViewModel pageViewModel = new PageViewModel(count, page, pageSize);
+            IndexViewModel viewModel = new IndexViewModel
+            {
+                PageViewModel = pageViewModel,
+                Articles = items
+            };
+            return View(viewModel);
+        }
+
         public async Task<IActionResult> ArticlesCars(int page = 1)
         {
             int pageSize = 6;   // количество элементов на странице
 
             IQueryable<Article> source = db.Articles.Where(item => item.CategoryId == 3 && item.WasCheck == true).OrderByDescending(item => item.Id);
+            var count = await source.CountAsync();
+            var items = await source.Skip((page - 1) * pageSize).Take(pageSize).ToListAsync();
+
+            PageViewModel pageViewModel = new PageViewModel(count, page, pageSize);
+            IndexViewModel viewModel = new IndexViewModel
+            {
+                PageViewModel = pageViewModel,
+                Articles = items
+            };
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ArticlesCars(string Search, int page = 1)
+        {
+            int pageSize = 6;   // количество элементов на странице
+
+            IQueryable<Article> source = db.Articles.Where(item => item.CategoryId == 3 && item.WasCheck == true && item.Title.Contains(Search)).OrderByDescending(item => item.Id);
             var count = await source.CountAsync();
             var items = await source.Skip((page - 1) * pageSize).Take(pageSize).ToListAsync();
 
@@ -112,6 +184,7 @@ namespace ASP.NET_Core_NewsApp.Controllers
         {
             if (ModelState.IsValid)
             {
+                article.UserName = User.Identity.Name;
                 db.Articles.Add(article);
                 db.SaveChanges();
                 return RedirectToAction("ShowList");

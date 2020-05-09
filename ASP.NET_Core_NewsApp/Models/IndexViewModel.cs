@@ -9,5 +9,6 @@ namespace ASP.NET_Core_NewsApp.Models
     {
         public IEnumerable<Article> Articles { get; set; }
         public PageViewModel PageViewModel { get; set; }
+        public string Search { get; set; }
     }
 }

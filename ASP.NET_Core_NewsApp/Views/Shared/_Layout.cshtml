@@ -11,7 +11,7 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">NewsTable</a>
+                <a style="font-weight:500;" class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">NewsTable</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -20,7 +20,7 @@
                     <partial name="_LoginPartial" />
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Главная</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Всё</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="ArticlesIT">Мир IT</a>
@@ -53,7 +53,12 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2020 - NewsTable Application 
+            &copy; 2020 - NewsTable Application
+            <span style="float:right;">
+                <a href="#"><img src="https://images11.popmeh.ru/upload/img_cache/810/8102f41b71db78f2d9c112feabc46953_ce_512x512x1x0_cropped_800x800.jpg" width="35px" height="35px" /></a>
+                <a href="#"><img src="https://cs9.pikabu.ru/post_img/2018/02/16/8/1518786190168257317.jpg" width="35px" height="35px" /></a>
+                <a href="#"><img src="https://i1.rozetka.ua/goods/13091113/54412122_images_13091113773.jpg" width="35px" height="35px" /></a>
+            </span>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
